@@ -13,8 +13,9 @@ class easyLog
 	bool closeLog(string namelog);
 
 private:
-	hash_map<string, FILE*> logs;
+	hash_map<string, string> logs;
 	string getTime();
 	string getPatch();
-	void newFileLog(string namelog);
+	void addNewLogFile(string namelog);
+	void addLogInfo(string info, string patch);
 };
