@@ -1,5 +1,18 @@
 ﻿#include "pch.h"
 #include "easyLog.h"
+#define GetCurrentDir
+bool easyLog::addLogRow(string namelog, string newLogRow)
+{
+	if (logs.count(namelog) > 0)
+	{
+		
+	}
+	else 
+	{
+
+	}
+	return false;
+}
 
 string easyLog::getTime()
 {
@@ -12,5 +25,9 @@ string easyLog::getTime()
 
 string easyLog::getPatch()
 {
-	return string();
+	wchar_t buffer[1024];
+	GetModuleFileName(NULL,buffer,1024);
+	wstring ws(buffer);
+	string patch(ws.begin(), ws.end());
+	return patch;
 }
