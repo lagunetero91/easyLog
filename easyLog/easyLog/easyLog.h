@@ -6,16 +6,18 @@
 #include <unordered_map>
 
 using namespace std;
+namespace easyLog {
+	class myEasyLog
+	{
+	public:
+		static bool addLogRow(string namelog, string newLogRow);
+		static bool closeLog(string namelog);
 
-class easyLog
-{
-	bool addLogRow(string namelog, string newLogRow);
-	bool closeLog(string namelog);
-
-private:
-	unordered_map<string, string> logs;
-	string getTime();
-	string getPatch();
-	void addNewLogFile(string namelog);
-	void addLogInfo(string info, string patch);
-};
+	private:
+		static unordered_map<string, string> logs;
+		static string getTime();
+		static string getPatch();
+		static void addNewLogFile(string namelog);
+		static void addLogInfo(string info, string patch);
+	};
+}
