@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include "easyLog.h"
-#define GetCurrentDir
+
 bool easyLog::addLogRow(string namelog, string newLogRow)
 {
 	// Se comprueba si existe ya un fichero con ese nombre.
@@ -10,6 +10,11 @@ bool easyLog::addLogRow(string namelog, string newLogRow)
 	}
 	easyLog::addLogInfo(newLogRow, logs.at(namelog));
 	
+}
+
+bool easyLog::closeLog(string namelog)
+{
+	return false;
 }
 
 //Hora actual del sistema.

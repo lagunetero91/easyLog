@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctime>
 #include <string>
-#include <hash_map>
+#include <unordered_map>
 
 using namespace std;
 
@@ -13,7 +13,7 @@ class easyLog
 	bool closeLog(string namelog);
 
 private:
-	hash_map<string, string> logs;
+	unordered_map<string, string> logs;
 	string getTime();
 	string getPatch();
 	void addNewLogFile(string namelog);
