@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctime>
 #include <string>
-#include <unordered_map>
+#include <set>
 
 using namespace std;
 namespace easyLog {
@@ -14,9 +14,8 @@ namespace easyLog {
 		static bool closeLog(string namelog);
 
 	private:
-		static unordered_map<string, string> logs;
+		static set<string> logs;
 		static string getTime();
-		static string getPatch();
 		static void addNewLogFile(string namelog);
 		static void addLogInfo(string info, string patch);
 	};

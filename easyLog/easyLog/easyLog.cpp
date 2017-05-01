@@ -5,12 +5,13 @@ namespace easyLog {
 	bool myEasyLog::addLogRow(string namelog, string newLogRow)
 	{
 		// Se comprueba si existe ya un fichero con ese nombre.
-		if (logs.count(namelog) == 0)
-		{
-			myEasyLog::addNewLogFile(namelog);
-		}
-		myEasyLog::addLogInfo(newLogRow, logs.at(namelog));
-
+	if ( logs.count(namelog + ".txt")==0)
+	{
+		addNewLogFile(namelog);
+	}
+	set<string>::iterator iter = logs.find(namelog + ".txt");
+	addLogInfo(newLogRow,*iter);
+	return true;
 	}
 
 	bool myEasyLog::closeLog(string namelog)
@@ -21,34 +22,28 @@ namespace easyLog {
 	//Hora actual del sistema.
 	string myEasyLog::getTime()
 	{
-		time_t rawtime;
-		struct tm* stime;
-		time(&rawtime);
-		stime = localtime(&rawtime);
-		return asctime(stime);
-	}
-
-	// Función que devuelve el directorio actual del proyecto
-	string myEasyLog::getPatch()
-	{
-		wchar_t buffer[1024];
-		GetModuleFileName(NULL, buffer, 1024);
-		wstring ws(buffer);
-		string patch(ws.begin(), ws.end());
-		return patch;
+		char buffer[32];
+		__time32_t clock;
+		struct tm newtime;
+		_time32(&clock);
+		_localtime32_s(&newtime, &clock);
+		asctime_s(buffer, 32, &newtime);		
+		string exit = buffer;
+		return exit.substr(0, exit.length() - 1);
 	}
 
 	// Añadimos un nuevo log a la lista de logs que se están usando en la ejecución actual.
 	void myEasyLog::addNewLogFile(string namelog)
 	{
-		logs.insert(namelog, getPatch() + "\logs" + namelog);
+		logs.insert(namelog + ".txt");
 	}
 
 	// Se añade una nueva línea de al final del fichero de log especificado.
 	void myEasyLog::addLogInfo(string info, string patch)
 	{
-		FILE* fp = fopen(patch.c_str(), "a");
-		fputs((getTime() + ":" + info).c_str(), fp);
-
+		FILE* fp;
+		int err = fopen_s(&fp, ("log\\" + patch).c_str(), "a");
+		fputs((getTime() + ": " + info + "\n").c_str(), fp);
+		fclose(fp);
 	}
 }
