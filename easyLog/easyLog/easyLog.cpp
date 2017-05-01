@@ -5,13 +5,13 @@ namespace easyLog {
 	bool myEasyLog::addLogRow(string namelog, string newLogRow)
 	{
 		// Se comprueba si existe ya un fichero con ese nombre.
-	if ( logs.count(namelog + ".txt")==0)
-	{
-		addNewLogFile(namelog);
-	}
-	set<string>::iterator iter = logs.find(namelog + ".txt");
-	addLogInfo(newLogRow,*iter);
-	return true;
+		if ( logs.count(namelog + ".txt")==0)
+		{
+			addNewLogFile(namelog);
+		}
+		set<string>::iterator iter = logs.find(namelog + ".txt");
+		if (addLogInfo(newLogRow, *iter)) return true;
+		return false;
 	}
 
 	bool myEasyLog::closeLog(string namelog)
@@ -39,11 +39,16 @@ namespace easyLog {
 	}
 
 	// Se añade una nueva línea de al final del fichero de log especificado.
-	void myEasyLog::addLogInfo(string info, string patch)
+	bool myEasyLog::addLogInfo(string info, string patch)
 	{
 		FILE* fp;
 		int err = fopen_s(&fp, ("log\\" + patch).c_str(), "a");
+		if (err != 0)
+		{
+			return false;
+		}
 		fputs((getTime() + ": " + info + "\n").c_str(), fp);
 		fclose(fp);
+		return true;
 	}
 }

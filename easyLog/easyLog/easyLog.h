@@ -17,6 +17,6 @@ namespace easyLog {
 		static set<string> logs;
 		static string getTime();
 		static void addNewLogFile(string namelog);
-		static void addLogInfo(string info, string patch);
+		static bool addLogInfo(string info, string patch);
 	};
 }
