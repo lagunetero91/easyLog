@@ -5,11 +5,13 @@
 	easyLog::easyLog(string logDir)
 	{
 		log = logDir;
+		_mkdir(log.c_str());
 	}
 
 	easyLog::easyLog()
 	{
 		log = "log\\";
+		_mkdir(log.c_str());
 	}
 
 	bool easyLog::addLogRow(string namelog, string newLogRow)
