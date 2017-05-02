@@ -21,3 +21,7 @@ las aplicaciones.
      y la información. En caso de que no exista el fichero de Log especificado este será creado.
      
       La información se irá escribiendo al final del fichero.
+      
+      **Ejemplo:**
+
+      05/02/17|18:49:27->: Mensaje de prueba.
