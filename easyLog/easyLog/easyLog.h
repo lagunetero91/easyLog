@@ -6,17 +6,22 @@
 #include <set>
 
 using namespace std;
-namespace easyLog {
-	class myEasyLog
+
+	class easyLog
 	{
 	public:
-		static bool addLogRow(string namelog, string newLogRow);
-		static bool closeLog(string namelog);
+		easyLog(string logDir);
+		easyLog();
+
+		bool addLogRow(string namelog, string newLogRow);
+		bool closeLog(string namelog);
 
 	private:
-		static set<string> logs;
-		static string getTime();
-		static void addNewLogFile(string namelog);
-		static bool addLogInfo(string info, string patch);
+		set<string> logs;
+		string log;
+		string getTime();
+		void addNewLogFile(string namelog);
+		bool addLogInfo(string info, string patch);
 	};
-}
+
+	
