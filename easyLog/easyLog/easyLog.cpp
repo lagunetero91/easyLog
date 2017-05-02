@@ -40,8 +40,8 @@
 		struct tm newtime;
 		_time32(&clock);
 		_localtime32_s(&newtime, &clock);
-		asctime_s(buffer, 32, &newtime);		
-		return string(buffer).substr(0, sizeof(buffer) - 8);
+		strftime(buffer, 32, "%D|%T->", &newtime);
+		return string(buffer);
 	}
 
 	// Añadimos un nuevo log a la lista de logs que se están usando en la ejecución actual.
