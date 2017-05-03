@@ -15,7 +15,7 @@ las aplicaciones.
       Constructor por defecto. En caso de usarlo los ficheros de Log serán almacenados en la carpeta del 
     proyecto en el directorio "Logs".
                             
-  >addLogRow(string logName, string info);
+  >addInfoToLog(string logname, string info);
   
       Método que permite introducir información en un fichero de Log. Se debe especificar el nombre del fichero 
      y la información. En caso de que no exista el fichero de Log especificado este será creado.
