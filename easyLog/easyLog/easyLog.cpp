@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "easyLog.h"
 
-
+	// Constructores: Ejemplo de string de directorio "c:\\logs\\newLogs\\"
 	easyLog::easyLog(string logDir)
 	{
 		log = logDir;
@@ -14,7 +14,11 @@
 		_mkdir(log.c_str());
 	}
 
-	bool easyLog::addLogRow(string namelog, string newLogRow)
+	// Método encargado de añadir una nueva línea al fichero de log especificado.
+	// -En caso de no existir el fichero, este es creado.
+	// -Si existe, la información es añadida al final del fichero.
+
+	bool easyLog::addInfoToLog(string namelog, string newinfo)
 	{
 		// Se comprueba si existe ya un fichero con ese nombre.
 		if (easyLog::logs.count(namelog + ".txt")==0)
@@ -22,7 +26,7 @@
 			addNewLogFile(namelog);
 		}
 		set<string>::iterator iter = logs.find(namelog + ".txt");
-		if (easyLog::addLogInfo(newLogRow, *iter)) return true;
+		if (easyLog::addLogInfo(newinfo, *iter)) return true;
 		return false;
 	}
 
@@ -33,6 +37,7 @@
 
 
 	//Hora actual del sistema.
+	// -El formato es: "DD/MM/YY|hh:mm:ss-> "
 	string easyLog::getTime()
 	{
 		char buffer[32];

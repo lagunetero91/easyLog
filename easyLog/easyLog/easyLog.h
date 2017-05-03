@@ -14,7 +14,7 @@ using namespace std;
 		easyLog(string logDir);
 		easyLog();
 
-		bool addLogRow(string namelog, string newLogRow);
+		bool addInfoToLog(string namelog, string newinfo);
 		bool closeLog(string namelog);
 
 	private:
